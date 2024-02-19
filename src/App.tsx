@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './App.css'
-import { PRIZES } from '@/data/constant'
+import { PRIZES, COLORS } from '@/data/constant'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { ListPrizeWon, LuckyWheel, Modal, WinningResult } from '@/components'
 import dayjs, { Dayjs } from 'dayjs'
@@ -11,6 +11,7 @@ import { ConfigModal, PrizeWon, StyleRotate, WinningResultType } from '@/types'
 const ID = 'luckywheel'
 const CURRENT_TIME_DURATION_LUCKY_WHEEL_ROTATE = 12
 const CURRENT_TIME_DURATION_NEEDLE_ROTATE = 0.6
+const MAX_SPIN_COUNT = 10;
 
 const App: React.FC = () => {
   const [styleRotate, setStyleRotate] = useState<StyleRotate>({
@@ -19,7 +20,7 @@ const App: React.FC = () => {
     timeDuration: 0
   })
   const [spinning, setSpinning] = useState<boolean>(false)
-  const [countSpin, setCountSpin] = useState<number>(10)
+  const [countSpin, setCountSpin] = useState<number>(MAX_SPIN_COUNT)
   const [winningResult, setWinningResult] = useState<WinningResultType>({
     name: '',
     img: ''
@@ -44,7 +45,7 @@ const App: React.FC = () => {
     if (countSpin > 0) {
       setSpinning(true)
       setTime(dayjs())
-      delayedApiCall()
+      delayedApiCall(MAX_SPIN_COUNT - countSpin + 1)
         .then((result: number) => {
           setIndexPrizeWon(result)
         })
@@ -155,7 +156,8 @@ const App: React.FC = () => {
     <div className='relative flex flex-col justify-center items-center'>
       <div
         onClick={handleOpenListOfPrizeWon}
-        className='menu-list-prize-won fixed top-10 right-7 p-3 rounded-lg bg-[#1A2B57] text-white cursor-pointer'
+        className={`menu-list-prize-won fixed top-10 right-7 p-3 rounded-lg bg-${COLORS.primary_second} text-white cursor-pointer`}
+        style={{background: `${COLORS.primary_second}`}}
       >
         Danh sách quà đã trúng thưởng
       </div>
@@ -192,7 +194,8 @@ const App: React.FC = () => {
           onClick={handleSpin}
           className={`py-2 ${
             countSpin === 0 || spinning ? 'cursor-not-allowed' : 'cursor-pointer'
-          } px-5 w-[100%] rounded-lg bg-[#1A2B57] text-white font-bold`}
+          } px-5 w-[100%] rounded-lg bg-[${COLORS.primary_second}] text-white font-bold`}
+          style={{background: `${COLORS.primary_second}`}}
         >
           {spinning ? 'Đang quay' : 'Quay'}
           <p className='font-light'>{countSpin > 0 ? `Còn ${countSpin} lượt quay` : 'Bạn đã hết lượt quay'}</p>

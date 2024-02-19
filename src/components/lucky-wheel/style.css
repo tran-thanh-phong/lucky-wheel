@@ -16,7 +16,7 @@
   width: 600px;
   height: 600px;
   border-radius: 50%;
-  border: 10px solid #1a2b57;
+  border: 10px solid #d9be82; /* #1a2b57 */
   /* box-shadow: 0 2px 50px #333, 0px 0px 50px #000; */
   box-shadow: -6px 10px 15px rgba(0, 0, 0, 0.5);
 }
@@ -108,6 +108,7 @@
   z-index: 1;
   border-radius: 50%;
   background-color: white;
+  padding: 15px 10px;
 }
 
 .luckywheel-btn {

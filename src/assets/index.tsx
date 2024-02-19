@@ -1,3 +1,5 @@
 import Nitro from './Nitro.png'
+import Logo from './Logo.png'
+import Gift from './Gift.png'
 
-export { Nitro }
+export { Nitro, Logo, Gift }
