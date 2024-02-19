@@ -8,7 +8,7 @@ type Props = {
 
 const Modal = ({ children, close, className }: Props) => {
   return (
-    <div className={`fixed top-0 left-0 w-full h-[100vh] bg-black bg-opacity-50 z-10 transition ${className}`}>
+    <div className={`fixed top-0 left-0 w-[100vw] h-[100vh] bg-black bg-opacity-50 z-10 transition ${className}`}>
       <div
         onClick={close}
         className='absolute top-3 right-3 bg-gray-400 rounded-full w-10 h-10 text-white flex justify-center items-center cursor-pointer'
