@@ -6,7 +6,7 @@ function callApi(round: number): Promise<number> {
       const prizes = PRIZES.map((x, i) => ({
         index: i,
         ...x
-      })).filter(x => x.level <= round)
+      })).filter(x => x.level <= round && round <= x.level2)
 
       let randomNumber = Math.floor(Math.random() * prizes.length)
       const prizeItem = prizes[randomNumber];

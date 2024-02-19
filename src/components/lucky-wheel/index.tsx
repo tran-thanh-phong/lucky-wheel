@@ -80,15 +80,19 @@ const LuckyWheel = ({ id, styleRotate, prizes, spinning, timeNeedleRotate }: Pro
           ctx.stroke()
           ctx.restore()
 
-          const htmlString = `<li class="luckywheel-item"><span style="transform: rotate(${i * turnNum}turn); width: ${
-            (100 / num) * 2 - 2
-          }%"><div style="border: 1.5px solid ${
-            i % 2 === 0 ? COLORS.wheel_item_line : COLORS.wheel_item_line
-          }" class="luckywheel-item__content"><img src="${
-            prizeList[i].img
-          }" style="margin: 0 auto" /><div class="text-container"><p class="name-prize" style="color: ${
-            COLORS.wheel_item
-          }; margin-top: 5px">${prizeList[i].name}</p></div></div></span></li>`
+          const htmlString = `
+          <li class="luckywheel-item">
+            <span style="transform: rotate(${i * turnNum}turn); width: ${
+              (100 / num) * 2 - 2
+            }%">
+              <div style="border: 1.5px solid ${ i % 2 === 0 ? COLORS.wheel_item_line : COLORS.wheel_item_line}" class="luckywheel-item__content">
+                <div class="text-container">
+                  <p class="name-prize" style="color: ${COLORS.wheel_item}; margin-top: 5px">${prizeList[i].name}</p>
+                </div>
+                <img src="${prizeList[i].img}" style="margin: 0 auto" />
+              </div>
+            </span>
+          </li>`
 
           html.push(htmlString)
         }
