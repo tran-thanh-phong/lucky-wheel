@@ -2,6 +2,7 @@ import { memo, useEffect, useRef } from 'react'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 import './style.css'
 import { COLORS } from '@/data/constant'
+import { Logo } from '@/assets'
 
 type Props = {
   /**
@@ -75,18 +76,18 @@ const LuckyWheel = ({ id, styleRotate, prizes, spinning, timeNeedleRotate }: Pro
           ctx.fillStyle = '#ffffff'
           ctx.fill()
           ctx.lineWidth = 1
-          ctx.strokeStyle = '#1A2B57'
+          ctx.strokeStyle = COLORS.wheel_stroke /* '#1A2B57' */
           ctx.stroke()
           ctx.restore()
 
           const htmlString = `<li class="luckywheel-item"><span style="transform: rotate(${i * turnNum}turn); width: ${
             (100 / num) * 2 - 2
           }%"><div style="border: 1.5px solid ${
-            i % 2 === 0 ? COLORS.primary_first : COLORS.primary_second
+            i % 2 === 0 ? COLORS.wheel_item_line : COLORS.wheel_item_line
           }" class="luckywheel-item__content"><img src="${
             prizeList[i].img
           }" style="margin: 0 auto" /><div class="text-container"><p class="name-prize" style="color: ${
-            COLORS.primary_second
+            COLORS.wheel_item
           }; margin-top: 5px">${prizeList[i].name}</p></div></div></span></li>`
 
           html.push(htmlString)
@@ -122,7 +123,10 @@ const LuckyWheel = ({ id, styleRotate, prizes, spinning, timeNeedleRotate }: Pro
       <section id='luckywheel' className='luckywheel'>
         <div className='luckywheel-btn'>
           <div ref={arrowRef} className='luckywheel-btn-icon '>
-            <FaMapMarkerAlt className='text-[60px] text-[#1A2B57]' />
+            <FaMapMarkerAlt 
+              className={`text-[60px] text-[${COLORS.wheel_pin_button}]`} 
+              style={{color: `${COLORS.wheel_pin_button}`}}
+            />
           </div>
         </div>
 
@@ -141,8 +145,8 @@ const LuckyWheel = ({ id, styleRotate, prizes, spinning, timeNeedleRotate }: Pro
           <canvas ref={canvasRef} className='luckywheel-canvas' width={'500px'} height={'500px'} />
         </div>
 
-        <div className='luckywheel-logo flex border-2 border-[#1A2B57]'>
-          <img src={'vite.svg'} className='p-2' />
+        <div className={`luckywheel-logo flex border-2 border-[${COLORS.wheel_stroke}]`}>
+          <img src={Logo} className='p-2' />
         </div>
       </section>
     </div>
