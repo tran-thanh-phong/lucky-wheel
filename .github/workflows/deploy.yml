@@ -14,10 +14,15 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    defaults:
+       run:
+         working-directory: ./server/
+
     strategy:
       matrix:
         node-version: [14.x, 16.x, 18.x]
-        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        cache: ['npm']
+        cache-dependency-path: ['./server/package-lock.json']
 
     steps:
     - uses: actions/checkout@v3
